@@ -1,11 +1,19 @@
 services:
   nginx-proxy:
-    build: .
+    build: ./nginx
     ports:
       - 80:80
-    volumes:
-     - ./templates:/etc/nginx/templates
-     - ./www:/usr/share/nginx/html
     environment:
-    - NGINX_HOST=foobar.com
     - NGINX_PORT=80
+    - DOMINIO1=foo.com
+    - SERVICIO1=dashboard:80
+    - DOMINIO2=bar.com
+    - SERVICIO2=web:80
+  dashboard: 
+    image: php:8.3.10-apache-bullseye
+    volumes:
+      - ./foo:/var/www/html/
+  web: 
+    image: php:8.3.10-apache-bullseye
+    volumes:
+      - ./bar:/var/www/html/

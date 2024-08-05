@@ -3,3 +3,8 @@ services:
     build: .
     ports:
       - 80:80
+    volumes:
+     - ./templates:/etc/nginx/templates
+    environment:
+    - NGINX_HOST=foobar.com
+    - NGINX_PORT=80
